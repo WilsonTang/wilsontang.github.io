@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "about"
+title: "关于"
 date: 2014-11-28 15:46
 comments: true
-sharing: true
+sharing: false
 footer: true
 ---
