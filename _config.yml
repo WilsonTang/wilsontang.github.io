@@ -4,7 +4,7 @@
 
 url: http://wilsontang.github.io
 title: Wilson Tang's Blog
-subtitle: I am a slow walker,but I never walk backwards.
+subtitle: I am a slow walker, but I never walk backwards.
 author: Wilson Tang
 simple_search: https://www.google.com/search
 description:
@@ -14,6 +14,7 @@ description:
 # http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
 # Additionally, %o will give you the ordinal representation of the day
 date_format: "ordinal"
+time_format: ""
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
@@ -33,6 +34,7 @@ destination: public
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
+# category_title_prefix: "Category: "
 markdown: rdiscount
 rdiscount:
   extensions:
