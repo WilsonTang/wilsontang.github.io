@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>当AutoLayout遇到UIView Animation - Wilson Tang&#8217;s Blog</title>
+  <meta name="author" content="Wilson Tang">
+
+  
+  <meta name="description" content="最近在项目中遇到一个关于AutoLayout与UIView Animation约束的问题。 Storyboard中, 界面布局采用了AutoLayout, 界面背景用2个UIImageView切换不同的UIImage, 通过UIView Animation来实现一个无限循环的动画效果， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wilsontang.github.io/blog/2014/12/07/autolayout-uiviewanimation">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Wilson Tang's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wilson Tang&#8217;s Blog</a></h1>
+  
+    <h2>I am a slow walker, but I never walk backwards.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:wilsontang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">当AutoLayout遇到UIView Animation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-07T18:10:35+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>最近在项目中遇到一个关于<code>AutoLayout</code>与<code>UIView Animation</code>约束的问题。</p></blockquote>
+
+<p><code>Storyboard</code>中, 界面布局采用了<code>AutoLayout</code>, 界面背景用2个<code>UIImageView</code>切换不同的<code>UIImage</code>, 通过<code>UIView Animation</code>来实现一个无限循环的动画效果，图层上面还有<code>UILabel</code>等控件。</p>
+
+<!--more-->
+
+
+<p>当我在界面上修改<code>UILabel</code>的<code>Font</code>属性的时候, 发现背景动画发生了变化。</p>
+
+<p>动画受影响主要问题如下:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="nl">delay</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nl">options</span><span class="p">:</span> <span class="n">UIViewAnimationOptions</span><span class="p">.</span><span class="n">CurveLinear</span><span class="p">,</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layoutIfNeeded</span><span class="p">()</span>
+</span><span class='line'>            <span class="p">},</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">{(</span><span class="n">finish</span><span class="p">)</span> <span class="k">in</span>
+</span><span class='line'>        <span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中用到了<code>self.view.layoutIfNeeded()</code>这个方法。</p>
+
+<p>修改<code>UILabel</code>的<code>Font</code>属性的时候, 其实<code>self.view</code>也做了<code>layout</code>的处理, 这时候<code>UIView Animation</code>中也同时用到了<code>self.view.layoutIfNeeded()</code>, 造成了错乱的效果。</p>
+
+<p>开始我在代码中用了</p>
+
+<pre><code>self.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+</code></pre>
+
+<p>结果发现进入这个界面的时候就出现来错乱, 所以肯定不能直接来手动限制<code>self.view</code>的约束。</p>
+
+<p>解决办法:
+将2个<code>UIImageView</code>不直接放在<code>self.view</code>上, 而是新添加一个<code>UIView</code>来放它们(比如这个<code>View</code>是<code>self.animationView</code>),  主要它们的<code>superView</code>不直接是<code>self.view</code>。这样就不会在更新<code>Font</code>属性的时候, <code>UIView Animation</code>受到影响。</p>
+
+<p>代码部分修改成如下:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="nl">delay</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nl">options</span><span class="p">:</span> <span class="n">UIViewAnimationOptions</span><span class="p">.</span><span class="n">CurveLinear</span><span class="p">,</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">animationView</span><span class="p">.</span><span class="n">layoutIfNeeded</span><span class="p">()</span>
+</span><span class='line'>            <span class="p">},</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">{(</span><span class="n">finish</span><span class="p">)</span> <span class="k">in</span>
+</span><span class='line'>        <span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wilson Tang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-07T18:10:35+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/swift/'>swift</a>
+  
+</span>
+
+
+    </p>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/07/how-to-display-hidden-files-on-mac/" title="Previous Post: Mac下如何显示隐藏文件">&laquo; Mac下如何显示隐藏文件</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section> 
+  <h1>文章分类</h1> 
+  <ul id="categories"> 
+    <li class='category'><a href='/blog/categories/mac/'>mac (1)</a></li>
+<li class='category'><a href='/blog/categories/swift/'>swift (1)</a></li>
+ 
+  </ul> 
+</section><section>
+  <h1>最新文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/12/07/autolayout-uiviewanimation/">当AutoLayout遇到UIView Animation</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/07/how-to-display-hidden-files-on-mac/">Mac下如何显示隐藏文件</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Wilson Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Wilson Tang's Blog]]></title>
-  <link href="http://wilsontang.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Swift | Wilson Tang's Blog]]></title>
+  <link href="http://wilsontang.github.io/blog/categories/swift/atom.xml" rel="self"/>
   <link href="http://wilsontang.github.io/"/>
   <updated>2014-12-07T22:51:31+08:00</updated>
   <id>http://wilsontang.github.io/</id>
@@ -27,8 +27,7 @@
 
 <p>当我在界面上修改<code>UILabel</code>的<code>Font</code>属性的时候, 发现背景动画发生了变化。</p>
 
-<p>动画受影响主要问题如下:</p>
-
+<p>动画受影响主要问题如下:
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -37,8 +36,7 @@
 </span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layoutIfNeeded</span><span class="p">()</span>
 </span><span class='line'>            <span class="p">},</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">{(</span><span class="n">finish</span><span class="p">)</span> <span class="k">in</span>
 </span><span class='line'>        <span class="p">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>其中用到了<code>self.view.layoutIfNeeded()</code>这个方法。</p>
 
@@ -54,8 +52,7 @@
 <p>解决办法:
 将2个<code>UIImageView</code>不直接放在<code>self.view</code>上, 而是新添加一个<code>UIView</code>来放它们(比如这个<code>View</code>是<code>self.animationView</code>),  主要它们的<code>superView</code>不直接是<code>self.view</code>。这样就不会在更新<code>Font</code>属性的时候, <code>UIView Animation</code>受到影响。</p>
 
-<p>代码部分修改成如下:</p>
-
+<p>代码部分修改成如下:
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -64,33 +61,7 @@
 </span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">animationView</span><span class="p">.</span><span class="n">layoutIfNeeded</span><span class="p">()</span>
 </span><span class='line'>            <span class="p">},</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">{(</span><span class="n">finish</span><span class="p">)</span> <span class="k">in</span>
 </span><span class='line'>        <span class="p">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mac下如何显示隐藏文件]]></title>
-    <link href="http://wilsontang.github.io/blog/2014/12/07/how-to-display-hidden-files-on-mac/"/>
-    <updated>2014-12-07T17:22:39+08:00</updated>
-    <id>http://wilsontang.github.io/blog/2014/12/07/how-to-display-hidden-files-on-mac</id>
-    <content type="html"><![CDATA[<p>可以通过“终端”，用命令行设置这个选项，命令如下：</p>
-
-<figure class='code'><figcaption><span>显示</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">defaults</span> <span class="n">write</span> <span class="n">com</span><span class="p">.</span><span class="n">apple</span><span class="p">.</span><span class="n">finder</span> <span class="n">AppleShowAllFiles</span> <span class="o">-</span><span class="kt">bool</span> <span class="nb">true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>隐藏</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">defaults</span> <span class="n">write</span> <span class="n">com</span><span class="p">.</span><span class="n">apple</span><span class="p">.</span><span class="n">finder</span> <span class="n">AppleShowAllFiles</span> <span class="o">-</span><span class="kt">bool</span> <span class="nb">false</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
