@@ -5,6 +5,9 @@ date: 2014-12-07 18:10:35 +0800
 comments: false
 sharing: false
 categories: Swift
+
+description: "当AutoLayout遇到UIView Animation"
+keywords: Swift, AutoLayout, UIView Animation
 ---
 
 >最近在项目中遇到一个关于`AutoLayout`与`UIView Animation`约束的问题。

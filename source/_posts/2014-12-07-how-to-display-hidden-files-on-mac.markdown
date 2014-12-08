@@ -5,6 +5,9 @@ date: 2014-12-07 17:22:39 +0800
 comments: false
 sharing: false
 categories: Mac
+
+description: "Mac下如何显示隐藏文件"
+keywords: Mac, 显示隐藏文件
 ---
 
 可以通过“终端”，用命令行设置这个选项，命令如下：
