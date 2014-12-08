@@ -2,8 +2,8 @@
 layout: post
 title: "当AutoLayout遇到UIView Animation"
 date: 2014-12-07 18:10:35 +0800
-comments: false
-sharing: false
+duoshuo_comments: true
+comments: true
 categories: Swift
 
 description: "当AutoLayout遇到UIView Animation"

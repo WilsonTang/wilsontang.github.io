@@ -2,8 +2,8 @@
 layout: post
 title: "Mac下如何显示隐藏文件"
 date: 2014-12-07 17:22:39 +0800
-comments: false
-sharing: false
+duoshuo_comments: true
+comments: true
 categories: Mac
 
 description: "Mac下如何显示隐藏文件"
