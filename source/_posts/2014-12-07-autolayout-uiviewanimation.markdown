@@ -7,7 +7,7 @@ sharing: false
 categories: Swift
 
 description: "当AutoLayout遇到UIView Animation"
-keywords: Wilson Tang, Swift, AutoLayout, UIView Animation, 当AutoLayout遇到UIView Animation
+keywords: AutoLayout, UIView Animation
 ---
 
 >最近在项目中遇到一个关于`AutoLayout`与`UIView Animation`约束的问题。

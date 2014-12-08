@@ -7,7 +7,7 @@ sharing: false
 categories: Mac
 
 description: "Mac下如何显示隐藏文件"
-keywords: Wilson Tang, Mac, 显示隐藏文件, Mac下如何显示隐藏文件
+keywords: 显示隐藏文件
 ---
 
 可以通过“终端”，用命令行设置这个选项，命令如下：
