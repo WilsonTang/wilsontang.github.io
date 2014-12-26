@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mac下如何显示隐藏文件 - Wilson Tang&#8217;s Blog</title>
+  <title>如何填补UIView的背景图片 - Wilson Tang&#8217;s Blog</title>
   <meta name="author" content="Wilson Tang">
 
   
-  <meta name="description" content="Mac下如何显示隐藏文件">
-  <meta name="keywords" content="显示隐藏文件">
+  <meta name="description" content="如何填补UIView的背景图片">
+  <meta name="keywords" content="self.view.backgroundColor, How to fill background image of an UIView, UIView.backgroundColor">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -22,7 +22,7 @@
   <meta name="msvalidate.01" content="923915A88F5F62DF2307D96D1D36BBD1" />
 
   
-  <link rel="canonical" href="http://wilsontang.github.io/blog/2014/12/07/how-to-display-hidden-files-on-mac">
+  <link rel="canonical" href="http://wilsontang.github.io/blog/2014/12/26/how-to-fill-background-image-of-an-uiview">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Wilson Tang's Blog" type="application/atom+xml">
@@ -72,7 +72,7 @@
   
   <header>
     
-      <h1 class="entry-title">Mac下如何显示隐藏文件</h1>
+      <h1 class="entry-title">如何填补UIView的背景图片</h1>
     
     
       <p class="meta">
@@ -81,7 +81,7 @@
 
 
 
-<time class='entry-date' datetime='2014-12-07T17:22:39+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
+<time class='entry-date' datetime='2014-12-26T16:38:42+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
         
         
         
@@ -92,21 +92,39 @@
   </header>
 
 
-<div class="entry-content"><p>可以通过“终端”，用命令行设置这个选项，命令如下：</p>
+<div class="entry-content"><blockquote><p>想设置如下一张图片填充为<code>self.view</code>的背景</p></blockquote>
 
-<figure class='code'><figcaption><span>显示</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">defaults</span> <span class="n">write</span> <span class="n">com</span><span class="p">.</span><span class="n">apple</span><span class="p">.</span><span class="n">finder</span> <span class="n">AppleShowAllFiles</span> <span class="o">-</span><span class="kt">bool</span> <span class="nb">true</span>
+<p><img src="/images/blogImgs/selfCheck_bkg.png" width="320" height="480"></p>
+
+<!--more-->
+
+
+<p>开始使用的方法是:</p>
+
+<pre><code>self.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "selfCheck_bkg")!)
+</code></pre>
+
+<p>效果变成了:
+<img src="/images/blogImgs/viewBkgFailureEffect.png" width="320" height="480">
+明显不是我想要得到的填充效果。</p>
+
+<p>解决办法,使用如下代码:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">UIGraphicsBeginImageContext</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">);</span>
+</span><span class='line'><span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;selfCheck_bkg&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">drawInRect</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'><span class="n">var</span> <span class="nl">bgImage</span><span class="p">:</span><span class="bp">UIImage</span><span class="o">!</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">()</span>
+</span><span class='line'><span class="n">UIGraphicsEndImageContext</span><span class="p">()</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">patternImage</span><span class="p">:</span> <span class="n">bgImage</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<figure class='code'><figcaption><span>隐藏</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">defaults</span> <span class="n">write</span> <span class="n">com</span><span class="p">.</span><span class="n">apple</span><span class="p">.</span><span class="n">finder</span> <span class="n">AppleShowAllFiles</span> <span class="o">-</span><span class="kt">bool</span> <span class="nb">false</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>得到的效果变成了:
+<img src="/images/blogImgs/viewBkgSuccessResults.png" width="320" height="480"></p>
 </div>
 
 
@@ -122,12 +140,12 @@
 
 
 
-<time class='entry-date' datetime='2014-12-07T17:22:39+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
+<time class='entry-date' datetime='2014-12-26T16:38:42+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'></span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/mac/'>mac</a>
+    <a class='category' href='/blog/categories/swift/'>swift</a>
   
 </span>
 
@@ -167,8 +185,8 @@ var jiathis_config={
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/12/07/autolayout-uiviewanimation/" title="Previous Post: 当AutoLayout遇到UIView Animation">&laquo; 当AutoLayout遇到UIView Animation</a>
       
-        <a class="basic-alignment right" href="/blog/2014/12/07/autolayout-uiviewanimation/" title="Next Post: 当AutoLayout遇到UIView Animation">当AutoLayout遇到UIView Animation &raquo;</a>
       
     </p>
   </footer>
@@ -179,7 +197,7 @@ var jiathis_config={
   <section>
     <h1>Comments</h1>
     <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread" data-title="Mac下如何显示隐藏文件"></div>
+<div class="ds-thread" data-title="如何填补UIView的背景图片"></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"wilsontang"};
   (function() {

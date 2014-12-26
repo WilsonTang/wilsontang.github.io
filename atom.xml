@@ -4,7 +4,7 @@
   <title><![CDATA[Wilson Tang's Blog]]></title>
   <link href="http://wilsontang.github.io/atom.xml" rel="self"/>
   <link href="http://wilsontang.github.io/"/>
-  <updated>2014-12-10T13:21:42+08:00</updated>
+  <updated>2014-12-26T17:52:52+08:00</updated>
   <id>http://wilsontang.github.io/</id>
   <author>
     <name><![CDATA[Wilson Tang]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[如何填补UIView的背景图片]]></title>
+    <link href="http://wilsontang.github.io/blog/2014/12/26/how-to-fill-background-image-of-an-uiview/"/>
+    <updated>2014-12-26T16:38:42+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2014/12/26/how-to-fill-background-image-of-an-uiview</id>
+    <content type="html"><![CDATA[<blockquote><p>想设置如下一张图片填充为<code>self.view</code>的背景</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/selfCheck_bkg.png" width="320" height="480"></p>
+
+<!--more-->
+
+
+<p>开始使用的方法是:</p>
+
+<pre><code>self.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "selfCheck_bkg")!)
+</code></pre>
+
+<p>效果变成了:
+<img src="http://wilsontang.github.io/images/blogImgs/viewBkgFailureEffect.png" width="320" height="480">
+明显不是我想要得到的填充效果。</p>
+
+<p>解决办法,使用如下代码:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">UIGraphicsBeginImageContext</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">);</span>
+</span><span class='line'><span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;selfCheck_bkg&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">drawInRect</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'><span class="n">var</span> <span class="nl">bgImage</span><span class="p">:</span><span class="bp">UIImage</span><span class="o">!</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">()</span>
+</span><span class='line'><span class="n">UIGraphicsEndImageContext</span><span class="p">()</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">patternImage</span><span class="p">:</span> <span class="n">bgImage</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>得到的效果变成了:
+<img src="http://wilsontang.github.io/images/blogImgs/viewBkgSuccessResults.png" width="320" height="480"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[当AutoLayout遇到UIView Animation]]></title>
