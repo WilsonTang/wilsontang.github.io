@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "拍摄视频"
-keywords: AVFoundation, AVCaptureFileOutputRecordingDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureMovieFileOutput, AVCaptureVideoPreviewLayer
+keywords: AVFoundation, AVCaptureFileOutputRecordingDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureMovieFileOutput, AVCaptureVideoPreviewLayer, iOS shoot video
 ---
 
 >效果图

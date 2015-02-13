@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "UIScrollView同步"
-keywords: UIScrollView, UIPageControl
+keywords: UIScrollView, UIPageControl, uiscrollView synchronization
 ---
 
 >效果图

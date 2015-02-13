@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "当AutoLayout遇到UIView Animation"
-keywords: AutoLayout, UIView Animation
+keywords: AutoLayout, UIView Animation, iOS AutoLayout, Swift AutoLayout
 ---
 
 >最近在项目中遇到一个关于`AutoLayout`与`UIView Animation`约束的问题。

@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "使用AVAudioPlayer播放MP3文件"
-keywords: AVAudioPlayer
+keywords: AVAudioPlayer, iOS use AVAudioPlayer, Swift use AVAudioPlayer, iOS AVFoundation, Swift AVFoundation
 ---
 
 >效果图

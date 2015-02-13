@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "UIView的模糊效果"
-keywords: UIBlurEffect, UIVisualEffectView
+keywords: iOS UIBlurEffect, iOS UIVisualEffectView
 ---
 
 >效果图

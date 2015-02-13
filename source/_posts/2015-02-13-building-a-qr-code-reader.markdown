@@ -6,8 +6,8 @@ duoshuo_comments: true
 comments: true
 categories: Swift
 
-description: "QR码阅读器"
-keywords: AVFoundation, AVCaptureMetadataOutputObjectsDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureDevicePosition, AVCaptureDeviceInput, AVCaptureMetadataOutput, AVCaptureVideoPreviewLayer
+description: "iOS QR码阅读器"
+keywords: AVFoundation, AVCaptureMetadataOutputObjectsDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureDevicePosition, AVCaptureDeviceInput, AVCaptureMetadataOutput, AVCaptureVideoPreviewLayer, iOS QR码, iOS building a qr code reader
 ---
 
 >效果图

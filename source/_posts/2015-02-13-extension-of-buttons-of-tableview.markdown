@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "扩展TableViewCell中的按钮"
-keywords: UITableViewCell
+keywords: UITableViewCell, iOS extend tableViewCell, Swift extend tableViewCell Button
 ---
 
 >效果图

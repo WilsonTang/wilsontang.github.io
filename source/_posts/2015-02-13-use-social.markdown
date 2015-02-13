@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "使用系统Social"
-keywords: Social, SLComposeViewController
+keywords: Social, SLComposeViewController, use social
 ---
 
 >效果图

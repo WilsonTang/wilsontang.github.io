@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "使用AVFoundation启动相机并保存"
-keywords: AVFoundation, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureDeviceInput, AVCaptureVideoPreviewLayer
+keywords: AVFoundation, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureDeviceInput, AVCaptureVideoPreviewLayer, Start CaptureDevice, Save CaptureDevice
 ---
 
 >效果图

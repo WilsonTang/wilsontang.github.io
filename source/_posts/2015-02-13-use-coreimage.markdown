@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "使用CoreImage"
-keywords: CoreImage, CIFilter, CIImage
+keywords: CoreImage, CIFilter, CIImage, iOS Use CoreImage
 ---
 
 >效果图

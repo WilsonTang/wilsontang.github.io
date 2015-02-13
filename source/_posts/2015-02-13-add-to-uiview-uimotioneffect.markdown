@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "给UIView添加UIMotionEffect"
-keywords: UIMotionEffect
+keywords: UIMotionEffect, iOS UIMotionEffect, Swift UIMotionEffect, add UIMotionEffect
 ---
 
 >效果图

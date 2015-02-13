@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "保存捕获的视频"
-keywords: AVFoundation, AssetsLibrary, AVCaptureFileOutputRecordingDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureMovieFileOutput
+keywords: AVFoundation, AssetsLibrary, AVCaptureFileOutputRecordingDelegate, AVCaptureSession, AVCaptureDevice, AVCaptureStillImageOutput, AVCaptureMovieFileOutput, iOS save video
 ---
 
 >效果图

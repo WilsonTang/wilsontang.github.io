@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "获取某一时刻的UIImage"
-keywords: AVAssetImageGenerator, AVFoundation, AssetsLibrary
+keywords: AVAssetImageGenerator, AVFoundation, AssetsLibrary, iOS Get Image
 ---
 
 >代码如下：

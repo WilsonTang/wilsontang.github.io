@@ -7,7 +7,7 @@ comments: true
 categories: Swift
 
 description: "预览画面的效果处理"
-keywords: UIMotionEffect
+keywords: UIMotionEffect, iOS MotionEffect
 ---
 
 >代码如下：
