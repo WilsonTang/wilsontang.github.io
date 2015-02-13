@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/use-social/</loc>
+    <lastmod>2015-02-13T14:54:01+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/use-coreimage/</loc>
+    <lastmod>2015-02-13T14:40:34+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/building-a-qr-code-reader/</loc>
+    <lastmod>2015-02-13T11:48:59+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/get-a-certain-time-image/</loc>
+    <lastmod>2015-02-13T11:45:33+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/to-save-the-captured-video/</loc>
+    <lastmod>2015-02-13T11:39:17+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/shooting-video/</loc>
+    <lastmod>2015-02-13T11:33:35+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/avfoundation-start-using-the-camera-and-save/</loc>
+    <lastmod>2015-02-13T11:30:57+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/uiscrollview-synchronization/</loc>
+    <lastmod>2015-02-13T11:18:36+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/extension-of-buttons-of-tableview/</loc>
+    <lastmod>2015-02-13T11:09:59+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/in-effect-preview-screen-treatment/</loc>
+    <lastmod>2015-02-13T11:04:30+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/blur-of-uiview/</loc>
+    <lastmod>2015-02-13T10:57:28+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/13/add-to-uiview-uimotioneffect/</loc>
+    <lastmod>2015-02-13T10:47:43+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://wilsontang.github.io/blog/2015/02/11/use-avaudioplayer-play-mp3-files/</loc>
+    <lastmod>2015-02-11T17:39:07+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://wilsontang.github.io/blog/2014/12/26/how-to-fill-background-image-of-an-uiview/</loc>
     <lastmod>2014-12-26T16:38:42+08:00</lastmod>
     <priority>0.8</priority>
@@ -17,13 +82,13 @@
   </url>
   <url>
     <loc>http://wilsontang.github.io/blog/archives/</loc>
-    <lastmod>2014-12-26T17:52:52+08:00</lastmod>
+    <lastmod>2015-02-13T16:18:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://wilsontang.github.io/</loc>
-    <lastmod>2014-12-26T17:52:52+08:00</lastmod>
+    <lastmod>2015-02-13T16:18:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

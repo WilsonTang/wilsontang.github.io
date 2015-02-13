@@ -4,7 +4,7 @@
   <title><![CDATA[Wilson Tang's Blog]]></title>
   <link href="http://wilsontang.github.io/atom.xml" rel="self"/>
   <link href="http://wilsontang.github.io/"/>
-  <updated>2014-12-26T17:52:52+08:00</updated>
+  <updated>2015-02-13T16:18:13+08:00</updated>
   <id>http://wilsontang.github.io/</id>
   <author>
     <name><![CDATA[Wilson Tang]]></name>
@@ -12,6 +12,1852 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用系统Social]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/use-social/"/>
+    <updated>2015-02-13T14:54:01+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/use-social</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/share_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/share_2.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/share_3.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">Social</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myComposeView</span> <span class="p">:</span> <span class="bp">SLComposeViewController</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myShareButton</span><span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">hex</span><span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mh">0x55ACEE</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">red</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">green</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">))</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">myColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span> <span class="nl">red</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">red</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">green</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">blue</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myShareButton</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">myColor</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;Share&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">titleLabel</span><span class="o">?</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="bp">UIFont</span><span class="p">.</span><span class="n">systemFontOfSize</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">setTitleColor</span><span class="p">(</span><span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">(),</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onPostToShare:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myShareButton</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onPostToShare</span><span class="p">(</span><span class="nl">sender</span> <span class="p">:</span> <span class="n">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//分享Twitter, 新浪微博， 腾讯微博</span>
+</span><span class='line'>        <span class="n">myComposeView</span> <span class="o">=</span> <span class="bp">SLComposeViewController</span><span class="p">(</span><span class="nl">forServiceType</span><span class="p">:</span> <span class="n">SLServiceTypeTwitter</span><span class="p">)</span>
+</span><span class='line'><span class="c1">//        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTencentWeibo)</span>
+</span><span class='line'><span class="c1">//        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myComposeView</span><span class="p">.</span><span class="n">setInitialText</span><span class="p">(</span><span class="s">&quot;Share Test from Swift&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myComposeView</span><span class="p">.</span><span class="n">addImage</span><span class="p">(</span><span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;test.png&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">presentViewController</span><span class="p">(</span><span class="n">myComposeView</span><span class="p">,</span> <span class="nl">animated</span><span class="p">:</span> <span class="nb">true</span><span class="p">,</span> <span class="nl">completion</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用CoreImage]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/use-coreimage/"/>
+    <updated>2015-02-13T14:40:34+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/use-coreimage</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/coreImage_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/coreImage_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">CoreImage</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">let</span> <span class="n">myInputImage</span> <span class="o">=</span> <span class="bp">CIImage</span><span class="p">(</span><span class="nl">image</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;test.png&quot;</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myImageView</span><span class="p">:</span> <span class="bp">UIImageView</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">let</span> <span class="nl">myButton</span><span class="p">:</span> <span class="bp">UIButton</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageView</span> <span class="o">=</span> <span class="bp">UIImageView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myImageView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">CIImage</span><span class="p">:</span> <span class="n">myInputImage</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myImageView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;Click&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitleColor</span><span class="p">(</span><span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">(),</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">40.0</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blackColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButton</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMyButton</span><span class="p">(</span><span class="nl">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myFilter</span> <span class="o">=</span> <span class="bp">CIFilter</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span> <span class="s">&quot;CISepiaTone&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myFilter</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">myInputImage</span><span class="p">,</span> <span class="nl">forKey</span><span class="p">:</span> <span class="n">kCIInputImageKey</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myFilter</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nl">forKey</span><span class="p">:</span> <span class="n">kCIInputIntensityKey</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">myOutputImage</span> <span class="p">:</span> <span class="bp">CIImage</span> <span class="o">=</span> <span class="n">myFilter</span><span class="p">.</span><span class="n">outputImage</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">CIImage</span><span class="p">:</span> <span class="n">myOutputImage</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageView</span><span class="p">.</span><span class="n">setNeedsDisplay</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[QR码阅读器]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/building-a-qr-code-reader/"/>
+    <updated>2015-02-13T11:48:59+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/building-a-qr-code-reader</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/avFoundation_3.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">AVCaptureMetadataOutputObjectsDelegate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">let</span> <span class="nl">mySession</span><span class="p">:</span> <span class="bp">AVCaptureSession</span><span class="o">!</span> <span class="o">=</span> <span class="bp">AVCaptureSession</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">let</span> <span class="n">devices</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myDevice</span><span class="p">:</span> <span class="bp">AVCaptureDevice</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">qrCodeFrameView</span><span class="p">:</span><span class="bp">UIView</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myVideoLayer</span> <span class="p">:</span> <span class="bp">AVCaptureVideoPreviewLayer</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">position</span> <span class="o">==</span> <span class="n">AVCaptureDevicePosition</span><span class="p">.</span><span class="n">Back</span><span class="p">){</span>
+</span><span class='line'>                <span class="n">myDevice</span> <span class="o">=</span> <span class="n">device</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myVideoInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">myDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureDeviceInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">mySession</span><span class="p">.</span><span class="n">canAddInput</span><span class="p">(</span><span class="n">myVideoInput</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">myVideoInput</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">myMetadataOutput</span><span class="p">:</span> <span class="bp">AVCaptureMetadataOutput</span><span class="o">!</span> <span class="o">=</span> <span class="bp">AVCaptureMetadataOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">mySession</span><span class="p">.</span><span class="n">canAddOutput</span><span class="p">(</span><span class="n">myMetadataOutput</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myMetadataOutput</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">myMetadataOutput</span><span class="p">.</span><span class="n">setMetadataObjectsDelegate</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">queue</span><span class="p">:</span> <span class="n">dispatch_get_main_queue</span><span class="p">())</span>
+</span><span class='line'>            <span class="n">myMetadataOutput</span><span class="p">.</span><span class="n">metadataObjectTypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AVMetadataObjectTypeQRCode</span><span class="p">]</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myVideoLayer</span> <span class="o">=</span> <span class="bp">AVCaptureVideoPreviewLayer</span><span class="p">.</span><span class="n">layerWithSession</span><span class="p">(</span><span class="n">mySession</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureVideoPreviewLayer</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">videoGravity</span> <span class="o">=</span> <span class="n">AVLayerVideoGravityResizeAspectFill</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">myVideoLayer</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">qrCodeFrameView</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">qrCodeFrameView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">greenColor</span><span class="p">().</span><span class="bp">CGColor</span>
+</span><span class='line'>        <span class="n">qrCodeFrameView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">qrCodeFrameView</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bringSubviewToFront</span><span class="p">(</span><span class="n">qrCodeFrameView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">startRunning</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">captureOutput</span><span class="p">(</span><span class="nl">captureOutput</span><span class="p">:</span> <span class="bp">AVCaptureOutput</span><span class="o">!</span><span class="p">,</span> <span class="n">didOutputMetadataObjects</span> <span class="nl">metadataObjects</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyObject</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="n">fromConnection</span> <span class="nl">connection</span><span class="p">:</span> <span class="bp">AVCaptureConnection</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">metadataObjects</span><span class="p">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">qrData</span><span class="p">:</span> <span class="bp">AVMetadataMachineReadableCodeObject</span>  <span class="o">=</span> <span class="n">metadataObjects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">as</span> <span class="bp">AVMetadataMachineReadableCodeObject</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">barCodeObject</span> <span class="o">=</span> <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">transformedMetadataObjectForMetadataObject</span><span class="p">(</span><span class="n">qrData</span> <span class="n">as</span> <span class="bp">AVMetadataMachineReadableCodeObject</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVMetadataMachineReadableCodeObject</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">qrCodeFrameView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">barCodeObject</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'><span class="c1">//            UIApplication.sharedApplication().openURL(NSURL(string: qrData.stringValue)!)</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">qrCodeFrameView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectZero</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[获取某一时刻的UIImage]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/get-a-certain-time-image/"/>
+    <updated>2015-02-13T11:45:33+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/get-a-certain-time-image</id>
+    <content type="html"><![CDATA[<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AssetsLibrary</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="bp">NSBundle</span><span class="p">.</span><span class="n">mainBundle</span><span class="p">().</span><span class="n">pathForResource</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">,</span> <span class="nl">ofType</span><span class="p">:</span> <span class="s">&quot;mov&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">fileURL</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">fileURLWithPath</span><span class="p">:</span> <span class="n">path</span><span class="o">!</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">avAsset</span> <span class="o">=</span> <span class="bp">AVURLAsset</span><span class="p">(</span><span class="nl">URL</span><span class="p">:</span> <span class="n">fileURL</span><span class="p">,</span> <span class="nl">options</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">generator</span> <span class="o">=</span> <span class="bp">AVAssetImageGenerator</span><span class="p">(</span><span class="nl">asset</span><span class="p">:</span> <span class="n">avAsset</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">generator</span><span class="p">.</span><span class="n">maximumSize</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">capturedImage</span> <span class="p">:</span> <span class="n">CGImageRef</span><span class="o">!</span> <span class="o">=</span> <span class="n">generator</span><span class="p">.</span><span class="n">copyCGImageAtTime</span><span class="p">(</span><span class="n">avAsset</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span> <span class="nl">actualTime</span><span class="p">:</span> <span class="nb">nil</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">imageView</span> <span class="o">=</span> <span class="bp">UIImageView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">imageView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">CGImage</span><span class="p">:</span> <span class="n">capturedImage</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="n">avAsset</span><span class="p">.</span><span class="n">duration</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[保存捕获的视频]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/to-save-the-captured-video/"/>
+    <updated>2015-02-13T11:39:17+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/to-save-the-captured-video</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/avFoundation_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AssetsLibrary</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">AVCaptureFileOutputRecordingDelegate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">mySession</span> <span class="p">:</span> <span class="bp">AVCaptureSession</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myDevice</span> <span class="p">:</span> <span class="bp">AVCaptureDevice</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myImageOutput</span> <span class="p">:</span> <span class="bp">AVCaptureStillImageOutput</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myVideoOutput</span> <span class="p">:</span> <span class="bp">AVCaptureMovieFileOutput</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myButtonStart</span> <span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myButtonStop</span> <span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span> <span class="o">=</span> <span class="bp">AVCaptureSession</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">devices</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">position</span> <span class="o">==</span> <span class="n">AVCaptureDevicePosition</span><span class="p">.</span><span class="n">Back</span><span class="p">){</span>
+</span><span class='line'>                <span class="n">myDevice</span> <span class="o">=</span> <span class="n">device</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">videoInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">myDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureDeviceInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">videoInput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">audioCaptureDevice</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devicesWithMediaType</span><span class="p">(</span><span class="n">AVMediaTypeAudio</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">audioInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">audioCaptureDevice</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>  <span class="n">as</span> <span class="bp">AVCaptureInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">audioInput</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageOutput</span> <span class="o">=</span> <span class="bp">AVCaptureStillImageOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myImageOutput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myVideoOutput</span> <span class="o">=</span> <span class="bp">AVCaptureMovieFileOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myVideoOutput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">myVideoLayer</span> <span class="p">:</span> <span class="bp">AVCaptureVideoPreviewLayer</span> <span class="o">=</span> <span class="bp">AVCaptureVideoPreviewLayer</span><span class="p">.</span><span class="n">layerWithSession</span><span class="p">(</span><span class="n">mySession</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureVideoPreviewLayer</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">videoGravity</span> <span class="o">=</span> <span class="n">AVLayerVideoGravityResizeAspectFill</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">myVideoLayer</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">startRunning</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myButtonStop</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;开始&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;停止&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">70</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButtonStart</span><span class="p">);</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButtonStop</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMyButton</span><span class="p">(</span><span class="nl">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span> <span class="n">sender</span> <span class="o">==</span> <span class="n">myButtonStart</span> <span class="p">){</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(.</span><span class="n">DocumentDirectory</span><span class="p">,</span> <span class="p">.</span><span class="n">UserDomainMask</span><span class="p">,</span> <span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">documentsDirectory</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">as</span> <span class="n">String</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">filePath</span> <span class="p">:</span> <span class="n">String</span><span class="o">?</span> <span class="o">=</span> <span class="s">&quot;\(documentsDirectory)/test.mp4&quot;</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">fileURL</span> <span class="p">:</span> <span class="bp">NSURL</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">fileURLWithPath</span><span class="p">:</span> <span class="n">filePath</span><span class="o">!</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>            <span class="n">myVideoOutput</span><span class="p">.</span><span class="n">startRecordingToOutputFileURL</span><span class="p">(</span><span class="n">fileURL</span><span class="p">,</span> <span class="nl">recordingDelegate</span><span class="p">:</span> <span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">sender</span> <span class="o">==</span> <span class="n">myButtonStop</span> <span class="p">){</span>
+</span><span class='line'>            <span class="n">myVideoOutput</span><span class="p">.</span><span class="n">stopRecording</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">captureOutput</span><span class="p">(</span><span class="nl">captureOutput</span><span class="p">:</span> <span class="bp">AVCaptureFileOutput</span><span class="o">!</span><span class="p">,</span> <span class="n">didFinishRecordingToOutputFileAtURL</span> <span class="nl">outputFileURL</span><span class="p">:</span> <span class="bp">NSURL</span><span class="o">!</span><span class="p">,</span> <span class="n">fromConnections</span> <span class="nl">connections</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyObject</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="bp">NSError</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">assetsLib</span> <span class="o">=</span> <span class="bp">ALAssetsLibrary</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">assetsLib</span><span class="p">.</span><span class="n">writeVideoAtPathToSavedPhotosAlbum</span><span class="p">(</span><span class="n">outputFileURL</span><span class="p">,</span> <span class="nl">completionBlock</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拍摄视频]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/shooting-video/"/>
+    <updated>2015-02-13T11:33:35+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/shooting-video</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/avFoundation_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">AVCaptureFileOutputRecordingDelegate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">mySession</span> <span class="p">:</span> <span class="bp">AVCaptureSession</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myDevice</span> <span class="p">:</span> <span class="bp">AVCaptureDevice</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myImageOutput</span> <span class="p">:</span> <span class="bp">AVCaptureStillImageOutput</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myVideoOutput</span> <span class="p">:</span> <span class="bp">AVCaptureMovieFileOutput</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myButtonStart</span> <span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myButtonStop</span> <span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span> <span class="o">=</span> <span class="bp">AVCaptureSession</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">devices</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">position</span> <span class="o">==</span> <span class="n">AVCaptureDevicePosition</span><span class="p">.</span><span class="n">Back</span><span class="p">){</span>
+</span><span class='line'>                <span class="n">myDevice</span> <span class="o">=</span> <span class="n">device</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">videoInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">myDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureDeviceInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">videoInput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">audioCaptureDevice</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devicesWithMediaType</span><span class="p">(</span><span class="n">AVMediaTypeAudio</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">audioInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">audioCaptureDevice</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>  <span class="n">as</span> <span class="bp">AVCaptureInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">audioInput</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageOutput</span> <span class="o">=</span> <span class="bp">AVCaptureStillImageOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myImageOutput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myVideoOutput</span> <span class="o">=</span> <span class="bp">AVCaptureMovieFileOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myVideoOutput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">myVideoLayer</span> <span class="p">:</span> <span class="bp">AVCaptureVideoPreviewLayer</span> <span class="o">=</span> <span class="bp">AVCaptureVideoPreviewLayer</span><span class="p">.</span><span class="n">layerWithSession</span><span class="p">(</span><span class="n">mySession</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureVideoPreviewLayer</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">videoGravity</span> <span class="o">=</span> <span class="n">AVLayerVideoGravityResizeAspectFill</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">myVideoLayer</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">startRunning</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myButtonStop</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;开始&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;停止&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">70</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButtonStart</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButtonStop</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButtonStart</span><span class="p">);</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButtonStop</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMyButton</span><span class="p">(</span><span class="nl">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span> <span class="n">sender</span> <span class="o">==</span> <span class="n">myButtonStart</span> <span class="p">){</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(.</span><span class="n">DocumentDirectory</span><span class="p">,</span> <span class="p">.</span><span class="n">UserDomainMask</span><span class="p">,</span> <span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">let</span> <span class="n">documentsDirectory</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">as</span> <span class="n">String</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">filePath</span> <span class="p">:</span> <span class="n">String</span><span class="o">?</span> <span class="o">=</span> <span class="s">&quot;\(documentsDirectory)/test.mp4&quot;</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">fileURL</span> <span class="p">:</span> <span class="bp">NSURL</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">fileURLWithPath</span><span class="p">:</span> <span class="n">filePath</span><span class="o">!</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>            <span class="n">myVideoOutput</span><span class="p">.</span><span class="n">startRecordingToOutputFileURL</span><span class="p">(</span><span class="n">fileURL</span><span class="p">,</span> <span class="nl">recordingDelegate</span><span class="p">:</span> <span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">sender</span> <span class="o">==</span> <span class="n">myButtonStop</span> <span class="p">){</span>
+</span><span class='line'>            <span class="n">myVideoOutput</span><span class="p">.</span><span class="n">stopRecording</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">captureOutput</span><span class="p">(</span><span class="nl">captureOutput</span><span class="p">:</span> <span class="bp">AVCaptureFileOutput</span><span class="o">!</span><span class="p">,</span> <span class="n">didFinishRecordingToOutputFileAtURL</span> <span class="nl">outputFileURL</span><span class="p">:</span> <span class="bp">NSURL</span><span class="o">!</span><span class="p">,</span> <span class="n">fromConnections</span> <span class="nl">connections</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyObject</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="bp">NSError</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;didFinishRecordingToOutputFileAtURL&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">captureOutput</span><span class="p">(</span><span class="nl">captureOutput</span><span class="p">:</span> <span class="bp">AVCaptureFileOutput</span><span class="o">!</span><span class="p">,</span> <span class="n">didStartRecordingToOutputFileAtURL</span> <span class="nl">fileURL</span><span class="p">:</span> <span class="bp">NSURL</span><span class="o">!</span><span class="p">,</span> <span class="n">fromConnections</span> <span class="nl">connections</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyObject</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;didStartRecordingToOutputFileAtURL&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用AVFoundation启动相机并保存]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/avfoundation-start-using-the-camera-and-save/"/>
+    <updated>2015-02-13T11:30:57+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/avfoundation-start-using-the-camera-and-save</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/avFoundation_1.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">mySession</span> <span class="p">:</span> <span class="bp">AVCaptureSession</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myDevice</span> <span class="p">:</span> <span class="bp">AVCaptureDevice</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myImageOutput</span> <span class="p">:</span> <span class="bp">AVCaptureStillImageOutput</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span> <span class="o">=</span> <span class="bp">AVCaptureSession</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">devices</span> <span class="o">=</span> <span class="bp">AVCaptureDevice</span><span class="p">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">position</span> <span class="o">==</span> <span class="n">AVCaptureDevicePosition</span><span class="p">.</span><span class="n">Back</span><span class="p">){</span>
+</span><span class='line'>                <span class="n">myDevice</span> <span class="o">=</span> <span class="n">device</span> <span class="n">as</span> <span class="bp">AVCaptureDevice</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">videoInput</span> <span class="o">=</span> <span class="bp">AVCaptureDeviceInput</span><span class="p">.</span><span class="n">deviceInputWithDevice</span><span class="p">(</span><span class="n">myDevice</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureDeviceInput</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">videoInput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myImageOutput</span> <span class="o">=</span> <span class="bp">AVCaptureStillImageOutput</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">myImageOutput</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">myVideoLayer</span> <span class="p">:</span> <span class="bp">AVCaptureVideoPreviewLayer</span> <span class="o">=</span> <span class="bp">AVCaptureVideoPreviewLayer</span><span class="p">.</span><span class="n">layerWithSession</span><span class="p">(</span><span class="n">mySession</span><span class="p">)</span> <span class="n">as</span> <span class="bp">AVCaptureVideoPreviewLayer</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'>        <span class="n">myVideoLayer</span><span class="p">.</span><span class="n">videoGravity</span> <span class="o">=</span> <span class="n">AVLayerVideoGravityResizeAspectFill</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">myVideoLayer</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySession</span><span class="p">.</span><span class="n">startRunning</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myButton</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;拍摄&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButton</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMyButton</span><span class="p">(</span><span class="nl">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myVideoConnection</span> <span class="o">=</span> <span class="n">myImageOutput</span><span class="p">.</span><span class="n">connectionWithMediaType</span><span class="p">(</span><span class="n">AVMediaTypeVideo</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">myImageOutput</span><span class="p">.</span><span class="n">captureStillImageAsynchronouslyFromConnection</span><span class="p">(</span><span class="n">myVideoConnection</span><span class="p">,</span> <span class="nl">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">imageDataBuffer</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">myImageData</span> <span class="p">:</span> <span class="bp">NSData</span> <span class="o">=</span> <span class="bp">AVCaptureStillImageOutput</span><span class="p">.</span><span class="n">jpegStillImageNSDataRepresentation</span><span class="p">(</span><span class="n">imageDataBuffer</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">myImage</span> <span class="p">:</span> <span class="bp">UIImage</span> <span class="o">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">data</span><span class="p">:</span> <span class="n">myImageData</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>            <span class="n">UIImageWriteToSavedPhotosAlbum</span><span class="p">(</span><span class="n">myImage</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="nb">nil</span><span class="p">,</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UIScrollView同步]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/uiscrollview-synchronization/"/>
+    <updated>2015-02-13T11:18:36+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/uiscrollview-synchronization</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/uiScrollView_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/uiScrollView_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UIScrollViewDelegate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">pageControl</span><span class="p">:</span> <span class="bp">UIPageControl</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">scrollViewHeader</span><span class="p">:</span> <span class="bp">UIScrollView</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">scrollViewMain</span><span class="p">:</span> <span class="bp">UIScrollView</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">let</span> <span class="n">pageSize</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">width</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxX</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxY</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">scrollViewHeader</span> <span class="o">=</span> <span class="bp">UIScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">showsHorizontalScrollIndicator</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>        <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">showsVerticalScrollIndicator</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>        <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">pagingEnabled</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>        <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">contentSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="n">pageSize</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">scrollViewHeader</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">scrollViewMain</span> <span class="o">=</span> <span class="bp">UIScrollView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">showsHorizontalScrollIndicator</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>        <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">showsVerticalScrollIndicator</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>        <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">pagingEnabled</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>        <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">contentSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="n">pageSize</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">scrollViewMain</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pageSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">myLabel</span><span class="p">:</span><span class="bp">UILabel</span> <span class="o">=</span> <span class="bp">UILabel</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">40</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blackColor</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">NSTextAlignment</span><span class="p">.</span><span class="n">Center</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Page\(i)&quot;</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="bp">UIFont</span><span class="p">.</span><span class="n">systemFontOfSize</span><span class="p">(</span><span class="bp">UIFont</span><span class="p">.</span><span class="n">smallSystemFontSize</span><span class="p">())</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">40.0</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myLabel</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span> <span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pageSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">let</span> <span class="nl">myLabel</span><span class="p">:</span><span class="bp">UILabel</span> <span class="o">=</span> <span class="bp">UILabel</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">NSTextAlignment</span><span class="p">.</span><span class="n">Center</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Page\(i)&quot;</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="bp">UIFont</span><span class="p">.</span><span class="n">systemFontOfSize</span><span class="p">(</span><span class="bp">UIFont</span><span class="p">.</span><span class="n">smallSystemFontSize</span><span class="p">())</span>
+</span><span class='line'>            <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">30.0</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myLabel</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">pageControl</span> <span class="o">=</span> <span class="bp">UIPageControl</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxY</span> <span class="o">-</span> <span class="mi">50</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">pageControl</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">lightGrayColor</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">pageControl</span><span class="p">.</span><span class="n">numberOfPages</span> <span class="o">=</span> <span class="n">pageSize</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">pageControl</span><span class="p">.</span><span class="n">currentPage</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>        <span class="n">pageControl</span><span class="p">.</span><span class="n">userInteractionEnabled</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">pageControl</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">scrollViewDidScroll</span><span class="p">(</span><span class="nl">scrollView</span><span class="p">:</span> <span class="bp">UIScrollView</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">scrollView</span> <span class="o">==</span> <span class="n">scrollViewMain</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">scrollViewHeader</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">x</span><span class="o">/</span><span class="mi">4</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">scrollViewDidEndDecelerating</span><span class="p">(</span><span class="nl">scrollView</span><span class="p">:</span> <span class="bp">UIScrollView</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">fmod</span><span class="p">(</span><span class="n">scrollViewMain</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxX</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">pageControl</span><span class="p">.</span><span class="n">currentPage</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">scrollViewMain</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">scrollViewMain</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">maxX</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[扩展TableViewCell中的按钮]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/extension-of-buttons-of-tableview/"/>
+    <updated>2015-02-13T11:09:59+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/extension-of-buttons-of-tableview</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/uiTableViewCell_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/uiTableViewCell_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UITableViewDelegate</span><span class="p">,</span> <span class="bp">UITableViewDataSource</span><span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myItems</span><span class="p">:</span> <span class="p">[</span><span class="n">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;TEST1&quot;</span><span class="p">,</span> <span class="s">&quot;TEST2&quot;</span><span class="p">,</span> <span class="s">&quot;TEST3&quot;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myTableView</span><span class="p">:</span> <span class="bp">UITableView</span> <span class="o">=</span> <span class="bp">UITableView</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">barHeight</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="o">=</span> <span class="bp">UIApplication</span><span class="p">.</span><span class="n">sharedApplication</span><span class="p">().</span><span class="n">statusBarFrame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">displayWidth</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">displayHeight</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myTableView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="bp">CGRect</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span> <span class="n">barHeight</span><span class="p">,</span> <span class="nl">width</span><span class="p">:</span> <span class="n">displayWidth</span><span class="p">,</span> <span class="nl">height</span><span class="p">:</span> <span class="n">displayHeight</span> <span class="o">-</span> <span class="n">barHeight</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myTableView</span><span class="p">.</span><span class="n">registerClass</span><span class="p">(</span><span class="bp">UITableViewCell</span><span class="p">.</span><span class="nb">self</span><span class="p">,</span> <span class="nl">forCellReuseIdentifier</span><span class="p">:</span> <span class="s">&quot;MyCell&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myTableView</span><span class="p">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>        <span class="n">myTableView</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myTableView</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">didReceiveMemoryWarning</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">didReceiveMemoryWarning</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">didSelectRowAtIndexPath</span> <span class="nl">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Num: \(indexPath.row)&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Value: \(myItems[indexPath.row])&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nl">section</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;numberOfRowsInSection&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">myItems</span><span class="p">.</span><span class="n">count</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">canEditRowAtIndexPath</span> <span class="nl">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;canEditRowAtIndexPath&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">true</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">commitEditingStyle</span> <span class="nl">editingStyle</span><span class="p">:</span> <span class="n">UITableViewCellEditingStyle</span><span class="p">,</span> <span class="n">forRowAtIndexPath</span> <span class="nl">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;commitEdittingStyle:\(editingStyle)&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">cellForRowAtIndexPath</span> <span class="nl">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">UITableViewCell</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;cellForRowAtIndexPath&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">cell</span><span class="p">:</span> <span class="bp">UITableViewCell</span> <span class="o">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="s">&quot;MyCell&quot;</span><span class="p">,</span> <span class="nl">forIndexPath</span><span class="p">:</span> <span class="n">indexPath</span><span class="p">)</span> <span class="n">as</span> <span class="bp">UITableViewCell</span>
+</span><span class='line'>        <span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span><span class="o">?</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;\(myItems[indexPath.row])&quot;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">cell</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">tableView</span><span class="p">(</span><span class="nl">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">editActionsForRowAtIndexPath</span> <span class="nl">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="n">AnyObject</span><span class="p">]</span><span class="o">?</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">myShareButton</span><span class="p">:</span> <span class="n">UITableViewRowAction</span> <span class="o">=</span> <span class="n">UITableViewRowAction</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">,</span> <span class="nl">title</span><span class="p">:</span> <span class="s">&quot;Share&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>            <span class="n">tableView</span><span class="p">.</span><span class="n">editing</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>            <span class="n">println</span><span class="p">(</span><span class="s">&quot;share&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blueColor</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">myArchiveButton</span><span class="p">:</span> <span class="n">UITableViewRowAction</span> <span class="o">=</span> <span class="n">UITableViewRowAction</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">,</span> <span class="nl">title</span><span class="p">:</span> <span class="s">&quot;Archive&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>            <span class="n">tableView</span><span class="p">.</span><span class="n">editing</span> <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>            <span class="n">println</span><span class="p">(</span><span class="s">&quot;archive&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">myArchiveButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">[</span><span class="n">myShareButton</span><span class="p">,</span> <span class="n">myArchiveButton</span><span class="p">]</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[预览画面的效果处理]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/in-effect-preview-screen-treatment/"/>
+    <updated>2015-02-13T11:04:30+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/in-effect-preview-screen-treatment</id>
+    <content type="html"><![CDATA[<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">@</span><span class="n">UIApplicationMain</span>
+</span><span class='line'><span class="k">class</span> <span class="nl">AppDelegate</span><span class="p">:</span> <span class="bp">UIResponder</span><span class="p">,</span> <span class="bp">UIApplicationDelegate</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">window</span><span class="p">:</span> <span class="bp">UIWindow</span><span class="o">?</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myEffectView</span><span class="p">:</span> <span class="bp">UIView</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">application</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nl">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="nl">NSObject</span><span class="p">:</span> <span class="n">AnyObject</span><span class="p">]</span><span class="o">?</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Override point for customization after application launch.</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">true</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">applicationWillResignActive</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span>
+</span><span class='line'>        <span class="c1">// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">effect</span><span class="p">:</span> <span class="n">UIBlurEffect</span> <span class="o">=</span> <span class="n">UIBlurEffect</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="n">UIBlurEffectStyle</span><span class="p">.</span><span class="n">Light</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myEffectView</span> <span class="o">=</span> <span class="n">UIVisualEffectView</span><span class="p">(</span><span class="nl">effect</span><span class="p">:</span> <span class="n">effect</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myEffectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">().</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">().</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">window</span><span class="o">?</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myEffectView</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">applicationDidEnterBackground</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span>
+</span><span class='line'>        <span class="c1">// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">applicationWillEnterForeground</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">applicationDidBecomeActive</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">myEffectView</span> <span class="o">!=</span> <span class="nb">nil</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">myEffectView</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">applicationWillTerminate</span><span class="p">(</span><span class="nl">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//ViewController</span>
+</span><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UIWebViewDelegate</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myWebView</span> <span class="p">:</span> <span class="bp">UIWebView</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myWebView</span> <span class="o">=</span> <span class="bp">UIWebView</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myWebView</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>        <span class="n">myWebView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myWebView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">url</span><span class="p">:</span> <span class="bp">NSURL</span><span class="o">!</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">string</span><span class="p">:</span> <span class="s">&quot;http://www.apple.com&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">request</span><span class="p">:</span> <span class="bp">NSURLRequest</span> <span class="o">=</span> <span class="bp">NSURLRequest</span><span class="p">(</span><span class="nl">URL</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myWebView</span><span class="p">.</span><span class="n">loadRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">webViewDidFinishLoad</span><span class="p">(</span><span class="nl">webView</span><span class="p">:</span> <span class="bp">UIWebView</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;webViewDidFinishLoad&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">webViewDidStartLoad</span><span class="p">(</span><span class="nl">webView</span><span class="p">:</span> <span class="bp">UIWebView</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;webViewDidStartLoad&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">didReceiveMemoryWarning</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">didReceiveMemoryWarning</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UIView的模糊效果]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/blur-of-uiview/"/>
+    <updated>2015-02-13T10:57:28+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/blur-of-uiview</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/uiBlurEffect_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/uiBlurEffect_2.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/uiBlurEffect_3.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">effectView</span> <span class="p">:</span> <span class="n">UIVisualEffectView</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">mySegcon</span> <span class="p">:</span> <span class="bp">UISegmentedControl</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">cyanColor</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">image</span> <span class="o">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;test&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">imageView</span> <span class="o">=</span> <span class="bp">UIImageView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">imageView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">imageView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySegcon</span> <span class="o">=</span> <span class="bp">UISegmentedControl</span><span class="p">(</span><span class="nl">items</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Dark&quot;</span><span class="p">,</span> <span class="s">&quot;ExtraLight&quot;</span><span class="p">,</span> <span class="s">&quot;Light&quot;</span><span class="p">])</span>
+</span><span class='line'>        <span class="n">mySegcon</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">maxY</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">mySegcon</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">mySegcon</span><span class="p">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mySegcon</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMySegmentedControl:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="n">UIControlEvents</span><span class="p">.</span><span class="n">ValueChanged</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">mySegcon</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">addVirtualEffectView</span><span class="p">(</span><span class="nl">effect</span> <span class="p">:</span> <span class="n">UIBlurEffect</span><span class="o">!</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">effectView</span> <span class="o">!=</span> <span class="nb">nil</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">effectView</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">effectView</span> <span class="o">=</span> <span class="n">UIVisualEffectView</span><span class="p">(</span><span class="nl">effect</span><span class="p">:</span> <span class="n">effect</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">mySegcon</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">midX</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">effectView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">midY</span> <span class="o">+</span> <span class="mi">20</span><span class="p">)</span> <span class="p">)</span>
+</span><span class='line'>        <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">mySegcon</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">effectView</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMySegmentedControl</span><span class="p">(</span><span class="nl">sender</span> <span class="p">:</span> <span class="bp">UISegmentedControl</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">effect</span> <span class="p">:</span> <span class="n">UIBlurEffect</span><span class="o">!</span>
+</span><span class='line'>        <span class="k">switch</span><span class="p">(</span><span class="n">sender</span><span class="p">.</span><span class="n">selectedSegmentIndex</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span><span class='line'>            <span class="n">effect</span> <span class="o">=</span> <span class="n">UIBlurEffect</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="n">UIBlurEffectStyle</span><span class="p">.</span><span class="n">Dark</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span><span class='line'>            <span class="n">effect</span> <span class="o">=</span> <span class="n">UIBlurEffect</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="n">UIBlurEffectStyle</span><span class="p">.</span><span class="n">Light</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span><span class='line'>            <span class="n">effect</span> <span class="o">=</span> <span class="n">UIBlurEffect</span><span class="p">(</span><span class="nl">style</span><span class="p">:</span> <span class="n">UIBlurEffectStyle</span><span class="p">.</span><span class="n">ExtraLight</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">default</span><span class="o">:</span>
+</span><span class='line'>            <span class="n">println</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">addVirtualEffectView</span><span class="p">(</span><span class="n">effect</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[给UIView添加UIMotionEffect]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/13/add-to-uiview-uimotioneffect/"/>
+    <updated>2015-02-13T10:47:43+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/13/add-to-uiview-uimotioneffect</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/uiMotionEffect_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/uiMotionEffect_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myBox</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blackColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">zPosition</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myBox</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">myLabel</span> <span class="o">=</span> <span class="bp">UILabel</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">20.0</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Hello Swift!!&quot;</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">shadowColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">grayColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">NSTextAlignment</span><span class="p">.</span><span class="n">Center</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">zPosition</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myLabel</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">xAxis1</span> <span class="o">=</span> <span class="bp">UIInterpolatingMotionEffect</span><span class="p">(</span><span class="nl">keyPath</span><span class="p">:</span> <span class="s">&quot;center.x&quot;</span><span class="p">,</span> <span class="nl">type</span><span class="p">:</span> <span class="n">UIInterpolatingMotionEffectType</span><span class="p">.</span><span class="n">TiltAlongHorizontalAxis</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">xAxis1</span><span class="p">.</span><span class="n">minimumRelativeValue</span> <span class="o">=</span> <span class="o">-</span><span class="mf">100.0</span>
+</span><span class='line'>        <span class="n">xAxis1</span><span class="p">.</span><span class="n">maximumRelativeValue</span> <span class="o">=</span> <span class="mf">100.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">yAxis1</span> <span class="o">=</span> <span class="bp">UIInterpolatingMotionEffect</span><span class="p">(</span><span class="nl">keyPath</span><span class="p">:</span> <span class="s">&quot;center.y&quot;</span><span class="p">,</span> <span class="nl">type</span><span class="p">:</span> <span class="n">UIInterpolatingMotionEffectType</span><span class="p">.</span><span class="n">TiltAlongVerticalAxis</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">yAxis1</span><span class="p">.</span><span class="n">minimumRelativeValue</span> <span class="o">=</span> <span class="o">-</span><span class="mf">100.0</span>
+</span><span class='line'>        <span class="n">yAxis1</span><span class="p">.</span><span class="n">maximumRelativeValue</span> <span class="o">=</span> <span class="mf">100.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">group1</span> <span class="o">=</span> <span class="bp">UIMotionEffectGroup</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">group1</span><span class="p">.</span><span class="n">motionEffects</span> <span class="o">=</span> <span class="p">[</span><span class="n">xAxis1</span><span class="p">,</span> <span class="n">yAxis1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">xAxis</span> <span class="o">=</span> <span class="bp">UIInterpolatingMotionEffect</span><span class="p">(</span><span class="nl">keyPath</span><span class="p">:</span> <span class="s">&quot;center.x&quot;</span><span class="p">,</span> <span class="nl">type</span><span class="p">:</span> <span class="n">UIInterpolatingMotionEffectType</span><span class="p">.</span><span class="n">TiltAlongHorizontalAxis</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">xAxis</span><span class="p">.</span><span class="n">minimumRelativeValue</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+</span><span class='line'>        <span class="n">xAxis</span><span class="p">.</span><span class="n">maximumRelativeValue</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">yAxis</span> <span class="o">=</span> <span class="bp">UIInterpolatingMotionEffect</span><span class="p">(</span><span class="nl">keyPath</span><span class="p">:</span> <span class="s">&quot;center.y&quot;</span><span class="p">,</span> <span class="nl">type</span><span class="p">:</span> <span class="n">UIInterpolatingMotionEffectType</span><span class="p">.</span><span class="n">TiltAlongVerticalAxis</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">yAxis</span><span class="p">.</span><span class="n">minimumRelativeValue</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+</span><span class='line'>        <span class="n">yAxis</span><span class="p">.</span><span class="n">maximumRelativeValue</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="n">group</span> <span class="o">=</span> <span class="bp">UIMotionEffectGroup</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">group</span><span class="p">.</span><span class="n">motionEffects</span> <span class="o">=</span> <span class="p">[</span><span class="n">xAxis</span><span class="p">,</span> <span class="n">yAxis</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myBox</span><span class="p">.</span><span class="n">addMotionEffect</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myLabel</span><span class="p">.</span><span class="n">addMotionEffect</span><span class="p">(</span><span class="n">group1</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用AVAudioPlayer播放MP3文件]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/02/11/use-avaudioplayer-play-mp3-files/"/>
+    <updated>2015-02-11T17:39:07+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/02/11/use-avaudioplayer-play-mp3-files</id>
+    <content type="html"><![CDATA[<blockquote><p>效果图</p></blockquote>
+
+<p><img src="http://wilsontang.github.io/images/blogImgs/avAudioPlayer_1.png" width="320" height="568">
+<img src="http://wilsontang.github.io/images/blogImgs/avAudioPlayer_2.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">AVFoundation</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">AVAudioPlayerDelegate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myAudioPlayer</span><span class="p">:</span> <span class="bp">AVAudioPlayer</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myButton</span><span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">soundFilePath</span><span class="p">:</span> <span class="bp">NSString</span> <span class="o">=</span> <span class="bp">NSBundle</span><span class="p">.</span><span class="n">mainBundle</span><span class="p">().</span><span class="n">pathForResource</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">,</span> <span class="nl">ofType</span><span class="p">:</span> <span class="s">&quot;mp3&quot;</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">fileURL</span><span class="p">:</span> <span class="bp">NSURL</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">fileURLWithPath</span><span class="p">:</span> <span class="n">soundFilePath</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myAudioPlayer</span> <span class="o">=</span> <span class="bp">AVAudioPlayer</span><span class="p">(</span><span class="nl">contentsOfURL</span><span class="p">:</span> <span class="n">fileURL</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myAudioPlayer</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myButton</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;▶︎&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitleColor</span><span class="p">(</span><span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">(),</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">darkGrayColor</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onClickMyButton:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="n">UIControlEvents</span><span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myButton</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onClickMyButton</span><span class="p">(</span><span class="nl">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">myAudioPlayer</span><span class="p">.</span><span class="n">playing</span> <span class="o">==</span> <span class="nb">true</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">myAudioPlayer</span><span class="p">.</span><span class="n">pause</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">sender</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;▶︎&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">myAudioPlayer</span><span class="p">.</span><span class="n">play</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">sender</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;■&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">audioPlayerDidFinishPlaying</span><span class="p">(</span><span class="nl">player</span><span class="p">:</span> <span class="bp">AVAudioPlayer</span><span class="o">!</span><span class="p">,</span> <span class="n">successfully</span> <span class="nl">flag</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Music Finish&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;▶︎&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">audioPlayerDecodeErrorDidOccur</span><span class="p">(</span><span class="nl">player</span><span class="p">:</span> <span class="bp">AVAudioPlayer</span><span class="o">!</span><span class="p">,</span> <span class="nl">error</span><span class="p">:</span> <span class="bp">NSError</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何填补UIView的背景图片]]></title>

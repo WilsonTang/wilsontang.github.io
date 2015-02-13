@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>使用系统Social - Wilson Tang&#8217;s Blog</title>
+  <meta name="author" content="Wilson Tang">
+
+  
+  <meta name="description" content="使用系统Social">
+  <meta name="keywords" content="Social, SLComposeViewController">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="google-site-verification" content="Auz6uNbZFw-xYGMjW1xBm5Bf8FmV6o9PYbZjxDsD5HI" />
+  <meta name="baidu-site-verification" content="YNYG8jjA8P" />
+  <meta name="msvalidate.01" content="923915A88F5F62DF2307D96D1D36BBD1" />
+
+  
+  <link rel="canonical" href="http://wilsontang.github.io/blog/2015/02/13/use-social">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Wilson Tang's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wilson Tang&#8217;s Blog</a></h1>
+  
+    <h2>I am a slow walker, but I never walk backwards.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:wilsontang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">使用系统Social</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-13T14:54:01+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'></span></time>
+        
+        
+        
+          | <a href="#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>效果图</p></blockquote>
+
+<p><img src="/images/blogImgs/share_1.png" width="320" height="568">
+<img src="/images/blogImgs/share_2.png" width="320" height="568">
+<img src="/images/blogImgs/share_3.png" width="320" height="568"></p>
+
+<blockquote><p>代码如下：</p></blockquote>
+
+<!--more-->
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">import</span> <span class="n">UIKit</span>
+</span><span class='line'><span class="n">import</span> <span class="n">Social</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myComposeView</span> <span class="p">:</span> <span class="bp">SLComposeViewController</span><span class="o">!</span>
+</span><span class='line'>    <span class="n">var</span> <span class="nl">myShareButton</span><span class="p">:</span> <span class="bp">UIButton</span><span class="o">!</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">let</span> <span class="nl">hex</span><span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mh">0x55ACEE</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">red</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">green</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">let</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">Double</span><span class="p">((</span><span class="n">hex</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">))</span> <span class="o">/</span> <span class="mf">255.0</span>
+</span><span class='line'>        <span class="n">var</span> <span class="nl">myColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span> <span class="nl">red</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">red</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">green</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">blue</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myShareButton</span> <span class="o">=</span> <span class="bp">UIButton</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">myColor</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;Share&quot;</span><span class="p">,</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">titleLabel</span><span class="o">?</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="bp">UIFont</span><span class="p">.</span><span class="n">systemFontOfSize</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">setTitleColor</span><span class="p">(</span><span class="bp">UIColor</span><span class="p">.</span><span class="n">whiteColor</span><span class="p">(),</span> <span class="nl">forState</span><span class="p">:</span> <span class="n">UIControlState</span><span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="nl">x</span><span class="p">:</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nl">y</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">myShareButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">action</span><span class="p">:</span> <span class="s">&quot;onPostToShare:&quot;</span><span class="p">,</span> <span class="nl">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">myShareButton</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span> <span class="n">onPostToShare</span><span class="p">(</span><span class="nl">sender</span> <span class="p">:</span> <span class="n">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//分享Twitter, 新浪微博， 腾讯微博</span>
+</span><span class='line'>        <span class="n">myComposeView</span> <span class="o">=</span> <span class="bp">SLComposeViewController</span><span class="p">(</span><span class="nl">forServiceType</span><span class="p">:</span> <span class="n">SLServiceTypeTwitter</span><span class="p">)</span>
+</span><span class='line'><span class="c1">//        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTencentWeibo)</span>
+</span><span class='line'><span class="c1">//        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myComposeView</span><span class="p">.</span><span class="n">setInitialText</span><span class="p">(</span><span class="s">&quot;Share Test from Swift&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">myComposeView</span><span class="p">.</span><span class="n">addImage</span><span class="p">(</span><span class="bp">UIImage</span><span class="p">(</span><span class="nl">named</span><span class="p">:</span> <span class="s">&quot;test.png&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">presentViewController</span><span class="p">(</span><span class="n">myComposeView</span><span class="p">,</span> <span class="nl">animated</span><span class="p">:</span> <span class="nb">true</span><span class="p">,</span> <span class="nl">completion</span><span class="p">:</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wilson Tang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-13T14:54:01+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'></span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/swift/'>swift</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+<!--   
+  
+   -->
+
+  
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tsina">新浪微博</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_weixin">微信</a>
+
+<a href="http://www.jiathis.com/share?uid=1992704" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1992704" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+  
+</div>
+
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/02/13/use-coreimage/" title="Previous Post: 使用CoreImage">&laquo; 使用CoreImage</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-title="使用系统Social"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wilsontang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p><img src="/images/blogImgs/about.jpg"></p>
+  <p>专注于iOS、AS3开发</p>
+</section><section> 
+  <h1>文章分类</h1> 
+  <ul id="categories"> 
+    <li class='category'><a href='/blog/categories/mac/'>mac (1)</a></li>
+<li class='category'><a href='/blog/categories/swift/'>swift (15)</a></li>
+ 
+  </ul> 
+</section><section>
+  <h1>最新文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/use-social/">使用系统Social</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/use-coreimage/">使用CoreImage</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/building-a-qr-code-reader/">QR码阅读器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/get-a-certain-time-image/">获取某一时刻的UIImage</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/13/to-save-the-captured-video/">保存捕获的视频</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+<h1>最新评论</h1>
+<ul class="ds-recent-comments" data-num-items="10" data-show-avatars="1" data-show-time="1" data-show-title="0" data-show-admin="1" data-excerpt-length="70"></ul>
+
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Wilson Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
