@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Objective-c | Wilson Tang's Blog]]></title>
+  <link href="http://wilsontang.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
+  <link href="http://wilsontang.github.io/"/>
+  <updated>2015-03-25T14:10:06+08:00</updated>
+  <id>http://wilsontang.github.io/</id>
+  <author>
+    <name><![CDATA[Wilson Tang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用KeyValueObjectMapping]]></title>
+    <link href="http://wilsontang.github.io/blog/2015/03/25/keyvalueobjectmapping-usage/"/>
+    <updated>2015-03-25T13:06:23+08:00</updated>
+    <id>http://wilsontang.github.io/blog/2015/03/25/keyvalueobjectmapping-usage</id>
+    <content type="html"><![CDATA[<blockquote><p>在iOS开发中，经常会用到网络请求。当收到服务器返回的数据后，想从中获取某个值的话，得使用<code>objectForKey</code>的方式取。这样感觉不是很方便，而且繁琐。</p></blockquote>
+
+<p>介绍<code>KeyValueObjectMapping</code>对象映射的使用。</p>
+
+<p>下载地址：<a href="https://github.com/dchohfi/KeyValueObjectMapping">https://github.com/dchohfi/KeyValueObjectMapping</a></p>
+
+<!--more-->
+
+
+<blockquote><p>可以在项目使用的地方引用需要的类</p></blockquote>
+
+<pre><code>#import "DCKeyValueObjectMapping.h"
+#import "DCParserConfiguration.h"
+#import "DCObjectMapping.h"
+#import "DCArrayMapping.h"
+</code></pre>
+
+<p>Tweet类</p>
+
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface Tweet : NSObject
+
+@property(nonatomic, strong) NSString *idStr;
+@property(nonatomic, strong) NSString *text;
+@property(nonatomic, strong) NSDate *createdAt;
+
+
+@end
+
+
+#import "Tweet.h"
+
+@implementation Tweet
+
+@end
+</code></pre>
+
+<p>User类</p>
+
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface User : NSObject
+
+@property(nonatomic, strong) NSString *idStr;
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *screenName;
+@property(nonatomic, strong) NSString *location;
+@property(nonatomic, strong) NSString *description1;
+@property(nonatomic, strong) NSURL *url;
+@property(nonatomic) BOOL protected;
+@property(nonatomic, strong) NSDate *createdAt;
+
+@property(nonatomic, strong) NSArray *tweets;
+
+@end
+
+
+#import "User.h"
+
+@implementation User
+
+@end
+</code></pre>
+
+<p>可以使用下面的方法测试，就会明白其中的使用方法了，哈哈。。。</p>
+
+<pre><code>//获取本地json数据代码
+NSString *caminhoJson = [[NSBundle bundleForClass: [self class]] pathForResource:@"tweet" ofType:@"json"];
+NSData *data = [NSData dataWithContentsOfFile:caminhoJson];
+NSError *error;
+NSDictionary *jsonParsed = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&amp;error];
+</code></pre>
+
+<p>DCKeyValueObjectMapping的使用, tweet.json文件及代码如下</p>
+
+<pre><code>{
+    "id_str": "27924446",
+    "name": "Diego Chohfi",
+    "screen_name": "dchohfi",
+    "location": "São Paulo",
+    "description1": "Instrutor na @Caelum, desenvolvedor de coração, apaixonado por música e cerveja, sempre cerveja.",
+    "url": "http://about.me/dchohfi",
+    "protected": false,
+    "created_at": "Tue Mar 31 18:01:12 +0000 2009",
+    "tweets": []
+}
+
+
+//示例代码:
+DCKeyValueObjectMapping *parser = [DCKeyValueObjectMapping mapperForClass: [Tweet class]];
+
+Tweet *tweet = [parser parseDictionary:jsonParsed];
+NSLog(@"%@ - %@", tweet.idStr, tweet.name);
+</code></pre>
+
+<p>DCObjectMapping的使用, tweet.json文件及代码如下</p>
+
+<pre><code>{
+    "id_str": 190957570511478800,
+    "text": "Tweet text",
+    "user": {
+        "name": "Diego Chohfi",
+        "screen_name": "dchohfi",
+        "location": "São Paulo"
+    }
+}
+
+
+//示例代码:
+DCParserConfiguration *config = [DCParserConfiguration configuration];
+
+DCObjectMapping *textToTweetText = [DCObjectMapping mapKeyPath:@"text" toAttribute:@"tweetText" onClass:[Tweet class]];
+DCObjectMapping *userToUserOwner = [DCObjectMapping mapKeyPath:@"user" toAttribute:@"userOwner" onClass:[Tweet class]];
+
+[config addObjectMapping:textToTweetText];
+[config addObjectMapping:userToUserOwner];
+
+DCKeyValueObjectMapping *parser = [DCKeyValueObjectMapping mapperForClass: [Tweet class]  andConfiguration:config];
+Tweet *tweetParsed = [parser parseDictionary:jsonParsed];
+NSLog(@"%@ - %@ - %@ - %@", tweetParsed.idStr, tweetParsed.tweetText, tweetParsed.userOwner.screenName, tweetParsed.userOwner.createdAt);
+</code></pre>
+
+<p>DCArrayMapping的使用, tweet.json文件及代码如下</p>
+
+<pre><code>{
+    "id_str": "27924446",
+    "name": "Diego Chohfi",
+    "screen_name": "dchohfi",
+    "location": "São Paulo",
+    "description1": "Instrutor na @Caelum, desenvolvedor de coração, apaixonado por música e cerveja, sempre cerveja.",
+    "url": "http://about.me/dchohfi",
+    "protected": false,
+    "created_at": "Tue Mar 31 18:01:12 +0000 2009",
+    "tweets" : [
+        {
+            "created_at" : "Sat Apr 14 00:20:07 +0000 2012",
+            "id_str" : 190957570511478784,
+            "text" : "Tweet text"
+        },
+        {
+            "created_at" : "Sat Apr 14 00:20:07 +0000 2012",
+            "id_str" : 190957570511478784,
+            "text" : "Tweet text"
+        }
+    ]
+}
+
+
+//示例代码:
+DCArrayMapping *mapper = [DCArrayMapping mapperForClassElements:[Tweet class] forAttribute:@"tweets" onClass:[User class]];
+DCParserConfiguration *config = [DCParserConfiguration configuration];
+[config addArrayMapper:mapper];
+DCKeyValueObjectMapping *parser = [DCKeyValueObjectMapping mapperForClass:[User class] andConfiguration:config];
+User *user = [parser parseDictionary:jsonParsed];
+NSLog(@"%@ - %@ - %@", [user.tweets[0] idStr], user.screenName, [user.tweets[0] createdAt]);
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
